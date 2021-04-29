@@ -1,7 +1,8 @@
 package web.service;
 
-import org.springframework.transaction.annotation.Transactional;
+import web.dao.RoleDao;
 import web.dao.UserDao;
+import web.models.Role;
 import web.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ public class UserServiceImp implements UserService{
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public void add(User user) {
@@ -27,6 +30,21 @@ public class UserServiceImp implements UserService{
     @Override
     public void update(User user) {
         userDao.update(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userDao.getUser(id);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
+
+    @Override
+    public List<Role> roleUser() {
+        return roleDao.getAllRoles();
     }
 
     @Override

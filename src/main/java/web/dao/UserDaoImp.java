@@ -1,11 +1,13 @@
 package web.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import web.models.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -35,8 +37,17 @@ public class UserDaoImp implements UserDao{
         return entityManager.find(User.class, id);
     }
 
+    @Transactional(readOnly = true)
     @Override
+    public User getUserByName(String name) {
+        TypedQuery<User> query = entityManager.createQuery("select u from User u where u.name = :name", User.class)
+                .setParameter("name",name);
+        return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUser() {
-        return entityManager.createQuery("SELECT u from User u").getResultList();
+        return entityManager.createQuery("Select u from User u").getResultList();
     }
 }

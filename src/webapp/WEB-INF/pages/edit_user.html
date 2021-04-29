@@ -19,18 +19,33 @@
           <td><input type="text" th:field="*{name}" id="name" /></td>
         </tr>
         <tr>
-          <td>Last Name: </td>
-          <td><input type="text" th:field="*{lastName}" id="lastName"></td>
+          <td>Password: </td>
+          <td><input type="text" th:field="*{password}" id="password"></td>
         </tr>
         <tr>
           <td>Email: </td>
           <td><input type="text" th:field="*{email}" id="email"/></td>
         </tr>
         <tr>
+          <p>
+            <td>Roles:
+              <td>
+                <input type="checkbox" name="roleList"
+                     th:each="role: ${roleList}"
+                     th:text="${role.role}"
+                     th:value="${role.role}"
+                     th:field="*{roles}"
+                />
+              </td>
+            </td>
+          </p>
+        </tr>
+        <tr>
           <td colspan="2"><input type="submit" value="Update"></td>
         </tr>
       </table>
     </form>
+    <div><a href="#" th:href="@{/logout}">Log Out</a></div>
   </div>
 </body>
 </html>
