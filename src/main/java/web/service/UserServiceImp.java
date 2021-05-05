@@ -1,5 +1,7 @@
 package web.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import web.dao.RoleDao;
 import web.dao.UserDao;
 import web.models.Role;
@@ -16,9 +18,12 @@ public class UserServiceImp implements UserService{
     private UserDao userDao;
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void add(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.add(user);
     }
 
@@ -29,6 +34,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.update(user);
     }
 

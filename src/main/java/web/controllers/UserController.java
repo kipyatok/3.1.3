@@ -19,7 +19,6 @@ public class UserController {
     public ModelAndView userPage() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String username = loggedInUser.getName();
-
         ModelAndView model = new ModelAndView();
         model.addObject("user", userService.getUserByName(username));
         model.setViewName("user");

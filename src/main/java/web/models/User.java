@@ -16,8 +16,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userName")
+    @Column(name = "user_name")
     private String name;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "age")
+    private Integer age;
 
     @Column(name = "email")
     private String email;
@@ -35,8 +41,11 @@ public class User implements UserDetails {
 
     public User() {};
 
-    public User(String name, String email, String password, Set<Role> roles) {
+    public User(Long id, String name, String lastName, Integer age, String email, String password, Set<Role> roles) {
+        this.id = id;
         this.name = name;
+        this.lastName = lastName;
+        this.age = age;
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -105,7 +114,7 @@ public class User implements UserDetails {
     }
 
     public String getRolesString(){
-        return roles.toString();
+        return roles.toString().replaceAll("[\\[\\]]","").replace("ROLE_","");
     }
 
     public Set<Role> getRoles() {
@@ -114,6 +123,22 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     @Override
