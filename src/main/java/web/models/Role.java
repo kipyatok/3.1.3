@@ -39,8 +39,7 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getRole() { return role;
     }
 
     public void setRole(String role) {
@@ -62,6 +61,7 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return this.role;
+       // System.out.println(role.replaceAll("[\\[\\]]","").replace("ROLE_",""));
+        return "21";
     }
 }

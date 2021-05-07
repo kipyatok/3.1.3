@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin panel</title>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>User page</title>
+
+    <script src="/getUser.js"></script>
+
 </head>
 
 <body>
-
 <header>
     <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-1 shadow">
-        <span class="navbar-text col-md-10" style="color: #ffffff"
-              th:text="${user.email} + ' with roles: ' + ${#strings.arrayJoin(user.rolesString, ' ')}"></span>
+        <span id="gHed" class="navbar-text col-md-10" style="color: white"></span>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" th:href="@{/login}">Logout</a>
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
             </li>
         </ul>
     </nav>
@@ -30,9 +35,7 @@
         <div class="col-md-2" style="margin-top:20px; height: 100vh">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#User">
-                        User
-                    </a>
+                    <a class="nav-link active" data-toggle="tab" href="#User">User</a>
                 </li>
             </ul>
         </div>
@@ -56,16 +59,7 @@
                                         <th>Role</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td th:utext="${user.id}"></td>
-                                        <td th:utext="${user.name}"></td>
-                                        <td th:utext="${user.lastName}"></td>
-                                        <td th:utext="${user.age}"></td>
-                                        <td th:utext="${user.email}"></td>
-                                        <td th:utext="${#strings.arrayJoin(user.rolesString, ' ')}"></td>
-                                    </tr>
-                                    </tbody>
+                                    <tbody id="gUser"></tbody>
                                 </table>
                             </div>
                         </div>
