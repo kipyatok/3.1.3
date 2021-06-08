@@ -10,6 +10,7 @@ import web.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+import web.service.EmailService;
 import web.service.UserService;
 
 import java.util.HashSet;

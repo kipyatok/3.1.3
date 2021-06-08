@@ -34,8 +34,11 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUser(Long id) {
-        return entityManager.find(User.class, id);
+        TypedQuery<User> query = entityManager.createQuery("select u from User u where u.id = :id", User.class)
+                .setParameter("id",id);
+        return query.getSingleResult();
     }
 
     @Transactional(readOnly = true)
