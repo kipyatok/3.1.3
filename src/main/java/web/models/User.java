@@ -39,6 +39,10 @@ public class User implements UserDetails {
     )
     private Set<Role> roles;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_mail")
+    private Collection<Mail> mail;
+
     public User() {};
 
     public User(String name, String lastName, Integer age, String email, String password, Set<Role> roles) {

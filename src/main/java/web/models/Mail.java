@@ -1,18 +1,32 @@
 package web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
+@Table(name="mail")
+@Data
 public class Mail {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String toMail;
     private String fromMail;
     private String bodyMail;
     private String subjectMail;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public Mail() {
     }
